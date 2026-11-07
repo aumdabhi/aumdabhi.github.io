@@ -1,543 +1,443 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Aum Dabhi | Project Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0d0d0f;
-  --bg2:#111114;
-  --bg3:#18181c;
-  --border:#2a2a30;
-  --accent:#e8a045;
-  --accent2:#c97d25;
-  --text:#e8e8ec;
-  --muted:#888896;
-  --card:#16161a;
-}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,13,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--accent);letter-spacing:.02em;text-decoration:none}
-.nav-links{display:flex;gap:1.5rem;list-style:none}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;transition:color .2s}
-.nav-links a:hover{color:var(--accent)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.hamburger span{display:block;width:24px;height:2px;background:var(--text);transition:.3s}
-@media(max-width:768px){
-  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:var(--bg2);flex-direction:column;gap:0;padding:1rem 0;border-bottom:1px solid var(--border)}
-  .nav-links.open{display:flex}
-  .nav-links li a{display:block;padding:.75rem 2rem}
-  .hamburger{display:flex}
-}
-
-/* HERO */
-#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;padding:8rem 6rem 4rem;max-width:1200px;margin:0 auto}
-.hero-text{}
-.hero-available{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem}
-.hero-available::before{content:'';width:8px;height:8px;border-radius:50%;background:#4caf50;box-shadow:0 0 8px #4caf5088;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:700;line-height:1.1;margin-bottom:.75rem}
-.hero-name .last{color:var(--accent)}
-.hero-title{font-size:1.05rem;color:var(--muted);font-weight:400;margin-bottom:1.25rem;border-left:3px solid var(--accent);padding-left:1rem;line-height:1.5}
-.hero-tagline{font-size:.95rem;color:var(--muted);margin-bottom:2rem;max-width:480px}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.75rem;font-size:.88rem;font-weight:600;border-radius:4px;text-decoration:none;transition:all .2s;cursor:pointer;letter-spacing:.02em}
-.btn-primary{background:var(--accent);color:#0d0d0f;border:none}
-.btn-primary:hover{background:var(--accent2)}
-.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
-.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
-.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap}
-.stat{}
-.stat-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--accent);display:block}
-.stat-lbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.hero-image-wrap{display:flex;justify-content:center}
-.hero-img-frame{position:relative;width:320px;height:400px}
-.hero-img-frame::before{content:'';position:absolute;inset:-12px;border:1px solid var(--accent);border-radius:4px;z-index:0;opacity:.4}
-.hero-img-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;border-radius:4px;position:relative;z-index:1;filter:grayscale(15%)}
-@media(max-width:900px){
-  #hero{grid-template-columns:1fr;padding:7rem 2rem 4rem;gap:2.5rem}
-  .hero-image-wrap{order:-1}
-  .hero-img-frame{width:200px;height:250px}
-}
-
-/* SECTIONS */
-section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
-.section-label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
-.section-title span{color:var(--accent)}
-.section-divider{width:48px;height:3px;background:var(--accent);margin-bottom:3rem;border-radius:2px}
-
-/* ABOUT */
-#about{background:var(--bg2)}
-#about section{max-width:900px}
-.about-grid{display:grid;grid-template-columns:3fr 2fr;gap:4rem;align-items:start}
-.about-text p{color:var(--muted);line-height:1.85;margin-bottom:1rem;font-size:.98rem}
-.about-bullets{margin-top:1.5rem;display:flex;flex-direction:column;gap:.6rem}
-.about-bullets li{list-style:none;display:flex;align-items:flex-start;gap:.6rem;color:var(--muted);font-size:.9rem}
-.about-bullets li::before{content:'→';color:var(--accent);flex-shrink:0;margin-top:.05rem}
-.about-highlights{display:flex;flex-direction:column;gap:1rem}
-.highlight-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.25rem 1.5rem}
-.highlight-card .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--accent)}
-.highlight-card .lbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:.15rem}
-@media(max-width:700px){.about-grid{grid-template-columns:1fr}}
-
-/* JOURNEY */
-.timeline{position:relative;padding-left:2rem}
-.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent),var(--border))}
-.tl-item{position:relative;margin-bottom:2.5rem;padding-left:2rem}
-.tl-dot{position:absolute;right:-2,25rem;top:.1rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);z-index:1}
-.tl-dot.active{background:var(--accent)}
-.tl-date{font-size:.75rem;color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.25rem}
-.tl-title{font-weight:600;font-size:1rem;margin-bottom:.15rem}
-.tl-place{font-size:.85rem;color:var(--muted);margin-bottom:.5rem}
-.tl-desc{font-size:.87rem;color:var(--muted);line-height:1.7}
-
-/* EXPERIENCE */
-#experience{background:var(--bg2)}
-.exp-cards{display:flex;flex-direction:column;gap:1.5rem}
-.exp-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:2rem;transition:border-color .2s}
-.exp-card:hover{border-color:var(--accent)}
-.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.25rem}
-.exp-role{font-weight:700;font-size:1.05rem}
-.exp-date{font-size:.78rem;color:var(--accent);font-weight:600;letter-spacing:.04em;background:rgba(232,160,69,.1);border:1px solid rgba(232,160,69,.25);padding:.2rem .7rem;border-radius:20px;white-space:nowrap}
-.exp-company{font-size:.88rem;color:var(--accent);margin-bottom:.5rem}
-.exp-overview{font-size:.87rem;color:var(--muted);margin-bottom:1rem;font-style:italic}
-.exp-bullets{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1rem}
-.exp-bullets li{list-style:none;display:flex;align-items:flex-start;gap:.6rem;font-size:.87rem;color:var(--muted)}
-.exp-bullets li::before{content:'▸';color:var(--accent);flex-shrink:0;margin-top:.05rem}
-.exp-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.tag{display:inline-block;font-size:.72rem;font-weight:500;padding:.2rem .65rem;border-radius:3px;background:rgba(232,160,69,.1);color:var(--accent);border:1px solid rgba(232,160,69,.2);letter-spacing:.03em}
-
-/* SKILLS */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem}
-.skill-group{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.5rem}
-.skill-group-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
-.skill-group-title span{font-size:1rem}
-.skill-pills{display:flex;flex-wrap:wrap;gap:.4rem}
-.skill-pill{font-size:.75rem;padding:.25rem .65rem;border-radius:3px;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted)}
-
-/* PROJECTS */
-#projects{background:var(--bg2)}
-.filter-bar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem}
-.filter-btn{font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:.35rem 1rem;border-radius:3px;background:transparent;border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all .2s}
-.filter-btn.active,.filter-btn:hover{border-color:var(--accent);color:var(--accent)}
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
-.proj-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.75rem;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}
-.proj-card:hover{border-color:var(--accent);transform:translateY(-3px)}
-.proj-icon{font-size:1.5rem;margin-bottom:.75rem}
-.proj-meta{font-size:.72rem;color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.4rem}
-.proj-name{font-weight:700;font-size:1rem;margin-bottom:.6rem;line-height:1.35}
-.proj-desc{font-size:.85rem;color:var(--muted);line-height:1.7;flex:1;margin-bottom:1rem}
-.proj-tags{display:flex;flex-wrap:wrap;gap:.35rem}
-
-/* CERTS */
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem}
-.cert-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:border-color .2s}
-.cert-card:hover{border-color:var(--accent)}
-.cert-icon{font-size:1.5rem;flex-shrink:0}
-.cert-name{font-weight:600;font-size:.92rem;margin-bottom:.2rem}
-.cert-body{font-size:.78rem;color:var(--muted)}
-
-/* CONTACT */
-#contact{background:var(--bg2)}
-.contact-inner{max-width:700px;margin:0 auto;text-align:center}
-.contact-inner .section-divider{margin:0 auto 3rem}
-.contact-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:2rem}
-.contact-link{display:flex;flex-direction:column;align-items:center;gap:.4rem;text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.25rem 2rem;transition:all .2s;min-width:150px}
-.contact-link:hover{border-color:var(--accent);color:var(--accent)}
-.contact-link .icon{font-size:1.4rem}
-.contact-link .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;font-weight:600;color:var(--muted)}
-.contact-link .val{font-size:.85rem;font-weight:500}
-.cta-banner{margin-top:3rem;background:linear-gradient(135deg,rgba(232,160,69,.1),rgba(201,125,37,.05));border:1px solid rgba(232,160,69,.3);border-radius:8px;padding:2.5rem;text-align:center}
-.cta-banner h3{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:.75rem}
-.cta-banner p{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem}
-
-/* FOOTER */
-footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
-
-/* SCROLL TO TOP */
-#scrolltop{position:fixed;bottom:2rem;right:2rem;width:40px;height:40px;background:var(--accent);color:#0d0d0f;border:none;border-radius:50%;font-size:1.1rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:99;display:flex;align-items:center;justify-content:center}
-#scrolltop.show{opacity:1}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aum Dabhi is a pre-construction coordinator and project engineer focused on commercial permitting, utility coordination, infrastructure, and data-driven project delivery.">
+  <meta name="theme-color" content="#f4f7f8">
+  <title>Aum Dabhi — Pre-Construction Coordinator &amp; Project Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('aum-theme-v2') || 'light';
+      document.documentElement.dataset.theme = saved;
+    }());
+  </script>
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-<nav id="navbar">
-  <a href="#hero" class="nav-logo">AD</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#journey">Journey</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#certifications">Certs</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+  <header class="site-header" id="site-header" aria-label="Site header">
+    <a class="brand" href="#home" aria-label="Aum Dabhi, home">
+      <span class="brand-mark">AD</span>
+      <span class="brand-name">Aum Dabhi</span>
+    </a>
 
-<!-- HERO -->
-<div id="hero">
-  <div class="hero-text">
-    <div class="hero-available">Available for Full-Time Roles</div>
-    <h1 class="hero-name">Aum<br><span class="last">Dabhi</span></h1>
-    <div class="hero-title">Project Engineer · Construction &amp; Infrastructure</div>
-    <p class="hero-tagline">Bridging field precision with strategic project delivery — from pipeline networks to highway infrastructure, turning complexity into on-time execution.</p>
-    <div class="hero-btns">
-      <a href="#contact" class="btn btn-primary">Let's Connect →</a>
-      <a href="#projects" class="btn btn-outline">View My Work</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-val">2+</span><span class="stat-lbl">Years Field Exp.</span></div>
-      <div class="stat"><span class="stat-val">80km</span><span class="stat-lbl">Pipeline Managed</span></div>
-      <div class="stat"><span class="stat-val">4.0</span><span class="stat-lbl">GPA at ASU</span></div>
-      <div class="stat"><span class="stat-val">OSHA</span><span class="stat-lbl">30-Hour Certified</span></div>
-    </div>
-  </div>
-  <div class="hero-image-wrap">
-    <div class="hero-img-frame">
-      <img src="Photo.jpeg" alt="Aum Dabhi"/>
-    </div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<div id="about">
-<section>
-  <div class="section-label">Who I Am</div>
-  <h2 class="section-title">From Site to <span>Strategy</span></h2>
-  <div class="section-divider"></div>
-  <div class="about-grid">
-    <div>
-      <div class="about-text">
-        <p>Project Engineer with 2+ years of hands-on field experience in heavy civil and infrastructure construction. Currently completing my MS in Construction Management at Arizona State University (May 2026) and available for full-time roles nationwide under OPT.</p>
-        <p>My background spans utility pipelines, highway infrastructure, and residential closeout — giving me a strong foundation across multiple project types. I thrive at the intersection of field operations and analytical rigor, whether I'm coordinating subcontractors on a 80km pipeline network or building Power BI dashboards to identify project bottlenecks.</p>
-        <p>Looking to grow with a forward-thinking GC where I can contribute from day one.</p>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <div class="nav-group">
+        <button type="button" aria-expanded="false" aria-controls="work-menu">Work <span aria-hidden="true">⌄</span></button>
+        <div class="nav-menu" id="work-menu">
+          <a href="#projects"><span>01</span> Projects</a>
+          <a href="#experience"><span>02</span> Experience</a>
+          <a href="#capabilities"><span>03</span> Capabilities</a>
+        </div>
       </div>
-      <ul class="about-bullets">
-        <li>🏗️ Heavy civil construction with multi-discipline coordination experience</li>
-        <li>📊 Data-driven PM — Excel cost tracking, Power BI dashboards, P6 scheduling</li>
-        <li>🌐 Mumbai to Tempe — international project exposure across India & the US</li>
-        <li>🔧 Field engineer at heart, strategic thinker by training</li>
-        <li>📋 OSHA 30, LEED GA, Bluebeam, Procore, Primavera P6 certified</li>
-        <li>✅ Open to relocate nationwide — OPT authorized</li>
-      </ul>
-    </div>
-    <div class="about-highlights">
-      <div class="highlight-card"><div class="num">4.0</div><div class="lbl">GPA at ASU</div></div>
-      <div class="highlight-card"><div class="num">50+</div><div class="lbl">Crew Members Supervised</div></div>
-      <div class="highlight-card"><div class="num">12+</div><div class="lbl">Subcontractors Coordinated</div></div>
-      <div class="highlight-card"><div class="num">110+</div><div class="lbl">Residential Units Closed Out</div></div>
-    </div>
-  </div>
-</section>
-</div>
+      <a href="#journey">Journey</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#about">About</a>
+    </nav>
 
-<!-- JOURNEY -->
-<section id="journey">
-  <div class="section-label">My Journey</div>
-  <h2 class="section-title">From Civil Engineering <span>to Construction Leadership</span></h2>
-  <div class="section-divider"></div>
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-date">2019 – 2023</div>
-      <div class="tl-title">Bachelor of Engineering — Civil Engineering</div>
-      <div class="tl-place">Ganpat University, India · GPA 3.2/4.0</div>
-      <div class="tl-desc">Built a rigorous foundation in structural design, surveying, geotechnical engineering, hydraulics, and construction technology. Developed hands-on skills through lab work, site visits, and capstone projects.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-date">May – Dec 2021</div>
-      <div class="tl-title">Project Engineer Intern — Shivay Infra</div>
-      <div class="tl-place">Residential Construction, India</div>
-      <div class="tl-desc">Managed closeout for 110+ residential units. Produced AutoCAD drawings, BOMs, punch lists, and customer acceptance documentation for a 65-unit development.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-date">May – Aug 2022</div>
-      <div class="tl-title">Site Engineer Intern — Shree Mangalam Buildcon Infra</div>
-      <div class="tl-place">$38M Highway Bridge Project, India</div>
-      <div class="tl-desc">Supported a 3km highway bridge project, coordinating 7–10 heavy equipment units, procurement logistics, and schedule tracking.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-date">May 2023 – July 2024</div>
-      <div class="tl-title">Project Engineer — M/s. Vinod H. Patel</div>
-      <div class="tl-place">80km Pipeline Infrastructure, India</div>
-      <div class="tl-desc">Led field operations across an 80+ km pipeline network. Managed 12+ subcontractors, 50–60 field personnel, and built an Excel-based cost tracking system that improved SLA and budget visibility.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-date">Aug 2024 – May 2026</div>
-      <div class="tl-title">Master of Science — Construction Management & Technology</div>
-      <div class="tl-place">Arizona State University, Tempe, AZ · GPA 4.0</div>
-      <div class="tl-desc">Specialized in construction analytics, ERP systems, project controls, sustainable construction, and trenchless technology. Graduated May 2026.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot active"></div>
-      <div class="tl-date">Open to Opportunities</div>
-      <div class="tl-title">Project Engineer · Site Manager · Construction PM</div>
-      <div class="tl-place">Nationwide — OPT Authorized</div>
-      <div class="tl-desc">Ready to contribute from Day 1 to a forward-thinking GC or owner's team across heavy civil, infrastructure, or commercial construction sectors.</div>
-    </div>
-  </div>
-</section>
+    <div class="header-actions">
+      <button class="search-trigger" id="search-trigger" type="button" aria-haspopup="dialog">
+        <span aria-hidden="true">⌕</span>
+        <span class="search-label">Search</span>
+        <kbd>⌘K</kbd>
+      </button>
 
-<!-- EXPERIENCE -->
-<div id="experience">
-<section>
-  <div class="section-label">Work Experience</div>
-  <h2 class="section-title">Professional <span>History</span></h2>
-  <div class="section-divider"></div>
-  <div class="exp-cards">
-
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role">Project Engineer</div>
-        <div class="exp-date">May 2023 – July 2024</div>
+      <div class="theme-switcher" role="radiogroup" aria-label="Color theme">
+        <input id="theme-system" type="radio" name="theme" value="system" data-theme-value="system" aria-label="System theme">
+        <label for="theme-system" title="System theme">◐</label>
+        <input id="theme-light" type="radio" name="theme" value="light" data-theme-value="light" aria-label="Light theme">
+        <label for="theme-light" title="Light theme">○</label>
+        <input id="theme-dark" type="radio" name="theme" value="dark" data-theme-value="dark" aria-label="Dark theme">
+        <label for="theme-dark" title="Dark theme">●</label>
       </div>
-      <div class="exp-company">M/s. Vinod H. Patel · India</div>
-      <div class="exp-overview">Managed execution of large-scale pipeline and infrastructure projects — coordinating field operations, subcontractors, project controls, procurement, quality, and safety across multiple work fronts.</div>
-      <ul class="exp-bullets">
-        <li>Managed construction activities across an 80+ km pipeline network involving civil, mechanical, and pipeline work packages</li>
-        <li>Coordinated schedules, budgets, and material deliveries for 12+ subcontractors to maintain project progress</li>
-        <li>Reviewed engineering drawings, specifications, RFIs, and technical submittals to ensure design compliance</li>
-        <li>Supervised field crews of 50–60 personnel while enforcing safety and quality standards</li>
-        <li>Developed an Excel-based cost tracking system to monitor project expenditures and support corrective actions</li>
-        <li>Identified construction risks and coordinated solutions with senior engineers to maintain schedule performance</li>
-      </ul>
-      <div class="exp-tags">
-        <span class="tag">Pipeline Construction</span><span class="tag">Project Scheduling</span><span class="tag">Cost Control</span><span class="tag">Subcontractor Mgmt</span><span class="tag">QA/QC</span><span class="tag">Safety Compliance</span>
+
+      <a class="header-contact" href="#contact">Contact</a>
+      <button class="menu-trigger" id="menu-trigger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="scroll-meter" aria-hidden="true"><span id="scroll-meter-bar"></span></div>
+
+  <aside class="section-rail" aria-label="Section quick navigation">
+    <a href="#home" data-section-link="home"><span>00</span><b>Home</b></a>
+    <a href="#projects" data-section-link="projects"><span>01</span><b>Work</b></a>
+    <a href="#experience" data-section-link="experience"><span>02</span><b>Experience</b></a>
+    <a href="#capabilities" data-section-link="capabilities"><span>03</span><b>Capabilities</b></a>
+    <a href="#about" data-section-link="about"><span>04</span><b>About</b></a>
+    <a href="#contact" data-section-link="contact"><span>05</span><b>Contact</b></a>
+  </aside>
+
+  <aside class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation panel" inert>
+    <div class="mobile-menu-top">
+      <span>Navigate</span>
+      <button type="button" id="menu-close" aria-label="Close navigation">Close ×</button>
+    </div>
+    <nav aria-label="Mobile navigation">
+      <a href="#home"><span>01</span> Home</a>
+      <a href="#projects"><span>02</span> Projects</a>
+      <a href="#experience"><span>03</span> Experience</a>
+      <a href="#capabilities"><span>04</span> Capabilities</a>
+      <a href="#journey"><span>05</span> Journey</a>
+      <a href="#credentials"><span>06</span> Credentials</a>
+      <a href="#about"><span>07</span> About</a>
+      <a href="#contact"><span>08</span> Contact</a>
+    </nav>
+    <p>Project engineering · Construction management · Infrastructure</p>
+  </aside>
+
+  <main id="main-content">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-atmosphere" aria-hidden="true"><span class="hero-corner-mark"></span></div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Pre-Construction Coordinator · Project Engineer</p>
+        <h1 id="hero-title">Aum<br>Dabhi</h1>
+        <p class="hero-intro">I move commercial projects from early design through permitting, utility coordination, bidding, and field-ready delivery.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Explore projects <span aria-hidden="true">→</span></a>
+          <a class="button button-secondary" href="#experience">View experience <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-proof" role="group" aria-label="Professional highlights">
+          <span><strong>17–20</strong> Pre-app plan sets</span>
+          <span><strong>209 km</strong> Water-supply program</span>
+          <span><strong>3</strong> Active commercial bids</span>
+        </div>
       </div>
-    </div>
 
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role">Site Engineer Intern</div>
-        <div class="exp-date">May – Aug 2022</div>
+      <figure class="hero-portrait">
+        <img src="Aum-Professional-clean.png" alt="Aum Dabhi smiling in a blue suit" width="1536" height="1024">
+        <figcaption><span>Design → Permit → Build</span><strong>Building clarity into every phase.</strong></figcaption>
+      </figure>
+    </section>
+
+    <section class="position section-dark" id="profile" aria-labelledby="position-title">
+      <div class="section-mark"><span>A-01</span><p>Professional profile</p></div>
+      <div class="position-copy reveal">
+        <p>Between early design and field-ready delivery.</p>
+        <h2 id="position-title">Construction moves faster when permitting, utilities, bids, and field reality align early.</h2>
+        <div class="position-tags" role="group" aria-label="Focus areas">
+          <span>Pre-construction</span>
+          <span>Permitting</span>
+          <span>Utility coordination</span>
+        </div>
       </div>
-      <div class="exp-company">Shree Mangalam Buildcon Infra Pvt. Ltd. · India</div>
-      <div class="exp-overview">Supported construction of a $38M highway bridge project through field coordination, equipment management, procurement support, and schedule monitoring.</div>
-      <ul class="exp-bullets">
-        <li>Assisted project teams in managing construction activities for a 3 km highway bridge project</li>
-        <li>Coordinated daily operations for 7–10 heavy equipment units including loaders, compactors, and cranes</li>
-        <li>Supported procurement and material logistics across multiple supply routes</li>
-        <li>Participated in schedule tracking, progress monitoring, and resource planning activities</li>
-      </ul>
-      <div class="exp-tags">
-        <span class="tag">Highway Construction</span><span class="tag">Equipment Coordination</span><span class="tag">Procurement</span><span class="tag">Field Engineering</span>
+      <p class="section-watermark" aria-hidden="true">Site / systems / delivery</p>
+    </section>
+
+    <section class="projects section-pad" id="projects" aria-labelledby="projects-title">
+      <header class="section-head reveal">
+        <div class="section-mark"><span>A-02</span><p>Selected projects</p></div>
+        <h2 id="projects-title">Work with<br>consequence.</h2>
+        <p>Four projects spanning infrastructure design, construction analytics, trenchless engineering, and sustainable building systems.</p>
+      </header>
+
+      <div class="project-stage reveal" aria-live="polite">
+        <article class="project-feature" data-project-panel="0">
+          <div class="project-art project-art-highway">
+            <img src="project-highway.jpg" alt="Aerial view of an active highway construction site" loading="lazy" decoding="async">
+            <span>Highway systems</span><strong>01</strong><p>Drainage design</p><small>Hydrology · sequencing · estimating</small>
+          </div>
+          <div class="project-copy">
+            <p class="project-index">Project 01 / 04 · Academic</p>
+            <h3>Highway Storm Sewer Drainage Design &amp; Construction</h3>
+            <p>Designed a complete highway stormwater drainage system with retention and detention ponds, culverts, catch basins, and storm sewer networks. The work included hydrologic and hydraulic analysis, cost estimating, and construction sequencing.</p>
+            <ul class="project-tags"><li>Highway construction</li><li>Hydraulics</li><li>Cost estimating</li></ul>
+          </div>
+        </article>
+
+        <article class="project-feature" data-project-panel="1" hidden>
+          <div class="project-art project-art-data">
+            <img src="project-rfi.jpg" alt="Construction professionals reviewing digital plans on a laptop" loading="lazy" decoding="async">
+            <span>Construction analytics</span><strong>02</strong><p>Workflow clarity</p><small>Power BI · RFIs · submittals</small>
+          </div>
+          <div class="project-copy">
+            <p class="project-index">Project 02 / 04 · CON 593</p>
+            <h3>RFI &amp; Submittal Turnaround Analysis Dashboard</h3>
+            <p>Evaluated 120+ RFI and submittal records with an average cycle time of 8 days and 6% beyond SLA. Delay analysis and subcontractor interviews informed a Power BI dashboard with escalation alerts to improve turnaround.</p>
+            <ul class="project-tags"><li>Power BI</li><li>KPI development</li><li>Document control</li></ul>
+          </div>
+        </article>
+
+        <article class="project-feature" data-project-panel="2" hidden>
+          <div class="project-art project-art-pipeline">
+            <img src="project-trenchless-case-study.jpg" alt="Trenchless green hydrogen pipeline case study beneath Ningaloo Reef" loading="lazy" decoding="async">
+            <span>Trenchless engineering</span><strong>03</strong><p>Subsea delivery</p><small>HDD · microtunneling · geotechnical</small>
+          </div>
+          <div class="project-copy">
+            <p class="project-index">Project 03 / 04 · Pipeline engineering</p>
+            <h3>Trenchless Pipeline Engineering &amp; Sustainable Infrastructure Design</h3>
+            <p>Designed a 2.4 km heavy industrial subsea pipeline using HDD and microtunneling, with procurement planning designed to avoid environmental disruption. Geotechnical study informed borehole alignment and material selection, decreasing deflection by 2.3%.</p>
+            <ul class="project-tags"><li>Trenchless construction</li><li>HDD design</li><li>Geotechnical</li></ul>
+          </div>
+        </article>
+
+        <article class="project-feature" data-project-panel="3" hidden>
+          <div class="project-art project-art-green">
+            <img src="project-desert-meadows.jpg" alt="Annotated Desert Meadows Preschool classroom plan showing smart blinds, thermostats, and operable windows" loading="lazy" decoding="async">
+            <span>Desert Meadows Preschool</span><strong>04</strong><p>Thermal comfort</p><small>LEED IEQ · smart controls · natural ventilation</small>
+          </div>
+          <div class="project-copy">
+            <p class="project-index">Project 04 / 04 · Graduate team project</p>
+            <h3>Desert Meadows Preschool Indoor Environmental Quality</h3>
+            <p>Developed the thermal-comfort strategy within a team LEED Indoor Environmental Quality proposal for Desert Meadows Preschool. The concept addressed air temperature, radiant temperature, air speed, and humidity through smart thermostats, operable windows, and automated blinds, supported by a classroom floor-plan layout.</p>
+            <ul class="project-tags"><li>LEED IEQ</li><li>Thermal comfort</li><li>Smart controls</li></ul>
+          </div>
+        </article>
       </div>
-    </div>
 
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role">Project Engineer Intern</div>
-        <div class="exp-date">May – Dec 2021</div>
+      <div class="project-controls reveal">
+        <div class="project-tabs" role="tablist" aria-label="Choose a project">
+          <button type="button" role="tab" aria-selected="true" data-project-tab="0"><span>01</span><b>Highway drainage</b></button>
+          <button type="button" role="tab" aria-selected="false" data-project-tab="1"><span>02</span><b>RFI analytics</b></button>
+          <button type="button" role="tab" aria-selected="false" data-project-tab="2"><span>03</span><b>Trenchless pipeline</b></button>
+          <button type="button" role="tab" aria-selected="false" data-project-tab="3"><span>04</span><b>Desert Meadows IEQ</b></button>
+        </div>
+        <div class="project-arrows">
+          <span id="project-count">01 / 04</span>
+          <button type="button" id="project-prev" aria-label="Previous project">←</button>
+          <button type="button" id="project-next" aria-label="Next project">→</button>
+        </div>
       </div>
-      <div class="exp-company">Shivay Infra · India</div>
-      <div class="exp-overview">Supported residential construction projects through design coordination, procurement tracking, project closeout documentation, and stakeholder communication.</div>
-      <ul class="exp-bullets">
-        <li>Managed project closeout activities for 110+ residential units</li>
-        <li>Prepared Bills of Materials (BOMs), punch lists, and customer acceptance documentation</li>
-        <li>Produced AutoCAD drawings and site layouts for a 65-unit residential development</li>
-        <li>Coordinated vendors and monitored procurement of construction materials</li>
-      </ul>
-      <div class="exp-tags">
-        <span class="tag">AutoCAD</span><span class="tag">BOM Management</span><span class="tag">Residential Construction</span><span class="tag">Vendor Management</span>
+    </section>
+
+    <section class="experience section-pad" id="experience" aria-labelledby="experience-title">
+      <header class="section-head section-head-inline reveal">
+        <div class="section-mark"><span>A-03</span><p>Experience log</p></div>
+        <h2 id="experience-title">Where plans<br>meet reality.</h2>
+        <p>Select a role to explore the field responsibilities and measurable scope behind it.</p>
+      </header>
+
+      <div class="role-list reveal">
+        <article class="role-item is-open">
+          <button type="button" class="role-trigger" aria-expanded="true" aria-controls="role-1">
+            <span class="role-number">01</span>
+            <span class="role-date">September 2026 — Present</span>
+            <span class="role-heading"><strong>Pre-Construction Coordinator</strong><small>Arktent Construction · Phoenix, Arizona</small></span>
+            <span class="role-focus">Permitting · utilities · bids</span>
+            <span class="role-icon" aria-hidden="true">−</span>
+          </button>
+          <div class="role-detail" id="role-1">
+            <p>Take commercial projects from early design through permitting and utility coordination for a Phoenix-based contractor delivering restaurants, drive-thrus, gas stations, convenience stores, and retail projects across metro Phoenix and southern Arizona.</p>
+            <ul>
+              <li>Prepared 17–20 pre-application plan sets in Revit and AutoCAD.</li>
+              <li>Prepared county and municipal submittals across Maricopa, Pinal, and Pima Counties and municipalities including Tempe, Mesa, and Gilbert.</li>
+              <li>Coordinated with APS to serve added restaurant load from existing infrastructure, reducing cost and schedule impact.</li>
+              <li>Review opportunities on BidNet and currently manage 3 active commercial bids.</li>
+              <li>Maintain RFI logs, field-issue tracking, and aligned contractor and vendor schedules.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role-item">
+          <button type="button" class="role-trigger" aria-expanded="false" aria-controls="role-2">
+            <span class="role-number">02</span>
+            <span class="role-date">May 2023 — July 2024</span>
+            <span class="role-heading"><strong>Project Engineer</strong><small>Vinod H. Patel · India</small></span>
+            <span class="role-focus">Pipelines · QA/QC · project controls</span>
+            <span class="role-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="role-detail" id="role-2" hidden>
+            <p>Joined the final 12 months of a 209 km pressurized water-supply system serving 34 villages, with engineering and QA/QC oversight for a 50+ km section.</p>
+            <ul>
+              <li>Coordinated 12+ civil, mechanical, and pipeline subcontractors through sourcing, submittal approvals, and specification review.</li>
+              <li>Resolved RFIs and field variances with engineering teams, utility owners, and agencies.</li>
+              <li>Built an Excel cost-tracking and forecasting model against the budget baseline.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role-item">
+          <button type="button" class="role-trigger" aria-expanded="false" aria-controls="role-3">
+            <span class="role-number">03</span>
+            <span class="role-date">May — August 2022</span>
+            <span class="role-heading"><strong>Site Engineer Intern</strong><small>Shree Mangalam Buildcon Infra Pvt. Ltd. · India</small></span>
+            <span class="role-focus">Highway · quality · procurement</span>
+            <span class="role-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="role-detail" id="role-3" hidden>
+            <p>Supported field engineering and material-quality validation for a $38M, 3 km highway bridge feasibility study.</p>
+            <ul>
+              <li>Supported equipment and raw-material procurement across 8 material lines.</li>
+              <li>Maintained timely procurement despite 5 supply interruptions.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role-item">
+          <button type="button" class="role-trigger" aria-expanded="false" aria-controls="role-4">
+            <span class="role-number">04</span>
+            <span class="role-date">May — December 2021</span>
+            <span class="role-heading"><strong>Project Engineer Intern</strong><small>Shivay Infra · India</small></span>
+            <span class="role-focus">Residential · closeout · AutoCAD</span>
+            <span class="role-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="role-detail" id="role-4" hidden>
+            <p>Supported residential delivery through punch-list completion, vendor coordination, progress monitoring, technical drawings, and client follow-up.</p>
+            <ul>
+              <li>Supervised punch-list completion for 45 units.</li>
+              <li>Produced AutoCAD site plans and technical drawings for a 65-unit residential complex.</li>
+              <li>Reviewed vendor deliveries against specifications before invoice approval.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role-item">
+          <button type="button" class="role-trigger" aria-expanded="false" aria-controls="role-5">
+            <span class="role-number">05</span>
+            <span class="role-date">July — September 2026</span>
+            <span class="role-heading"><strong>Graduate Researcher, AI in Construction</strong><small>Arizona State University · Tempe, Arizona</small></span>
+            <span class="role-focus">AI agents · codes · specifications</span>
+            <span class="role-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="role-detail" id="role-5" hidden>
+            <p>Created and prototyped an AI-based agent system for extracting guidance from construction specifications, codes, and permitting criteria.</p>
+            <ul>
+              <li>Tested LLM-based information retrieval against regulation and specification documents.</li>
+              <li>Explored training approaches to reduce manual document-review effort.</li>
+            </ul>
+          </div>
+        </article>
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
-</div>
+    <section class="capabilities section-pad" id="capabilities" aria-labelledby="capabilities-title">
+      <header class="section-head reveal">
+        <div class="section-mark"><span>A-04</span><p>Delivery capabilities</p></div>
+        <h2 id="capabilities-title">Tools for the<br>full project cycle.</h2>
+      </header>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">What I Bring</div>
-  <h2 class="section-title">Skills &amp; <span>Tools</span></h2>
-  <div class="section-divider"></div>
-  <div class="skills-grid">
-    <div class="skill-group">
-      <div class="skill-group-title"><span>📋</span> Project Management</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Project Planning</span><span class="skill-pill">Primavera P6</span><span class="skill-pill">MS Project</span><span class="skill-pill">Scope Management</span><span class="skill-pill">Cost Control</span><span class="skill-pill">Risk Assessment</span><span class="skill-pill">Procurement</span><span class="skill-pill">Construction Docs</span>
+      <div class="capability-grid reveal">
+        <article><span>01</span><h3>Pre-construction</h3><p>Pre-application plan sets, permit packages, jurisdiction research, BidNet opportunity review, active-bid management, and utility coordination with APS.</p></article>
+        <article><span>02</span><h3>Field engineering</h3><p>Pressurized water systems, ductile iron and PVC pipelines, rising and gravity mains, QA/QC, RFIs, submittals, and utility-owner coordination.</p></article>
+        <article><span>03</span><h3>Technical systems</h3><p>AutoCAD, Revit, Procore, Bluebeam Revu, Primavera P6, InEight, MS Project, Project 365, Power BI, and advanced Excel.</p></article>
+        <article><span>04</span><h3>Project delivery</h3><p>Specifications, change orders, procurement, cost forecasting, document control, contractor and vendor schedules, and field-issue tracking.</p></article>
       </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title"><span>🏗️</span> Field Engineering</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Site Supervision</span><span class="skill-pill">Pipeline Construction</span><span class="skill-pill">Heavy Civil</span><span class="skill-pill">Highway & Bridge</span><span class="skill-pill">OSHA 30</span><span class="skill-pill">QA/QC</span><span class="skill-pill">Equipment Coordination</span><span class="skill-pill">Utility Infrastructure</span>
+
+      <div class="tool-ticker" role="group" aria-label="Technical tools">
+        <div><span>AutoCAD</span><span>Revit</span><span>BidNet</span><span>Primavera P6</span><span>Procore</span><span>Bluebeam</span><span>Power BI</span><span>InEight</span><span>Project 365</span></div>
       </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title"><span>💻</span> Technical Tools</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Primavera P6</span><span class="skill-pill">Procore</span><span class="skill-pill">Bluebeam Revu</span><span class="skill-pill">AutoCAD</span><span class="skill-pill">Revit</span><span class="skill-pill">Excel (Advanced)</span><span class="skill-pill">InEight</span><span class="skill-pill">Power BI</span>
+    </section>
+
+    <section class="journey section-pad" id="journey" aria-labelledby="journey-title">
+      <header class="section-head section-head-inline reveal">
+        <div class="section-mark"><span>A-05</span><p>Career sequence</p></div>
+        <h2 id="journey-title">From civil foundations<br>to construction leadership.</h2>
+      </header>
+
+      <ol class="timeline reveal">
+        <li><span>May 2023</span><div><h3>Bachelor of Engineering · Civil Engineering</h3><p>Ganpat University · Mehsana, Gujarat</p></div></li>
+        <li><span>2021 — 2024</span><div><h3>Field experience across residential, highway, and pipeline construction</h3><p>Progressed from project engineer intern to project engineer, coordinating delivery across multiple construction types.</p></div></li>
+        <li><span>May 2026</span><div><h3>MS · Construction Management &amp; Technology</h3><p>Arizona State University · Tempe, Arizona</p></div></li>
+        <li class="timeline-now"><span>Sep 2026 — Present</span><div><h3>Pre-Construction Coordinator · Arktent Construction</h3><p>Phoenix, Arizona · Commercial pre-construction, permitting, utilities, and bids</p></div></li>
+      </ol>
+    </section>
+
+    <section class="credentials section-pad" id="credentials" aria-labelledby="credentials-title">
+      <header class="section-head reveal">
+        <div class="section-mark"><span>A-06</span><p>Credentials</p></div>
+        <h2 id="credentials-title">Prepared for<br>the work.</h2>
+        <p>Professional certifications and training supporting safe, efficient, and accountable project delivery.</p>
+      </header>
+
+      <div class="credential-grid reveal">
+        <article><span>Safety</span><strong>OSHA 30-Hour</strong><p>Construction safety · OSHA</p></article>
+        <article><span>Sustainability</span><strong>LEED Green Associate</strong><p>Sustainable building · USGBC</p></article>
+        <article><span>Documentation</span><strong>Bluebeam Certified Professional</strong><p>Construction documentation · Bluebeam</p></article>
+        <article><span>Management</span><strong>Construction Manager in Training</strong><p>CMIT designation · CMAA</p></article>
+        <article><span>Platform</span><strong>Procore Certified</strong><p>Project management · Procore student</p></article>
+        <article><span>Scheduling</span><strong>Primavera P6</strong><p>Project scheduling · Oracle</p></article>
       </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title"><span>⚙️</span> Engineering & Design</div>
-      <div class="skill-pills">
-        <span class="skill-pill">RFI & Submittal Mgmt</span><span class="skill-pill">BOM Management</span><span class="skill-pill">Design Review</span><span class="skill-pill">Value Engineering</span><span class="skill-pill">Trenchless Methods</span><span class="skill-pill">Geotechnical Coordination</span>
+    </section>
+
+    <section class="about-dossier section-pad" id="about" aria-labelledby="about-title">
+      <header class="section-head reveal">
+        <div class="section-mark"><span>A-07</span><p>About Aum</p></div>
+        <h2 id="about-title">The person<br>behind the plans.</h2>
+        <p>A civil engineer and construction management professional connecting design, permitting, utilities, project controls, and field delivery.</p>
+      </header>
+
+      <div class="about-spread">
+        <div class="about-visual reveal">
+          <figure class="about-portrait">
+            <img src="Aum-Professional-clean.png" alt="Portrait of Aum Dabhi" width="1536" height="1024" loading="lazy" decoding="async">
+            <figcaption><span>Profile / AD-01</span><strong>Aum Dabhi</strong><small>Phoenix, Arizona</small></figcaption>
+          </figure>
+          <figure class="about-site-image">
+            <img src="project-pipeline.jpg" alt="Pipeline construction equipment representing Aum's infrastructure experience" loading="lazy" decoding="async">
+            <figcaption>Infrastructure experience / field delivery</figcaption>
+          </figure>
+          <div class="about-stamp" aria-hidden="true"><strong>DESIGN</strong><span>TO</span><strong>FIELD</strong></div>
+        </div>
+
+        <div class="about-narrative reveal">
+          <p class="about-lede">I am Aum Dabhi, a civil engineer and construction management professional based in Phoenix. My work sits at the point where design intent becomes a permitted, coordinated, field-ready plan.</p>
+          <p>At Arktent Construction, I guide commercial projects through pre-application planning, jurisdiction research, permitting, APS power coordination, bidding, and issue tracking. Earlier roles built my field foundation across a 209 km pressurized water-supply program, highway and bridge construction, residential closeout, and construction-focused AI research.</p>
+          <blockquote>Good pre-construction removes unknowns before they become field problems.</blockquote>
+
+          <dl class="about-facts">
+            <div><dt>Based</dt><dd>Phoenix, Arizona</dd></div>
+            <div><dt>Current role</dt><dd>Pre-Construction Coordinator<br>Arktent Construction</dd></div>
+            <div><dt>Education</dt><dd>MS, Construction Management &amp; Technology<br>BE, Civil Engineering</dd></div>
+            <div><dt>Core focus</dt><dd>Commercial pre-construction<br>Infrastructure delivery</dd></div>
+          </dl>
+
+          <div class="about-actions">
+            <a class="button button-primary" href="mailto:aumdabhi22@gmail.com">Start a conversation <span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="https://www.linkedin.com/in/aum-dabhi-373ab8321" target="_blank" rel="noreferrer">View LinkedIn <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-title"><span>🤝</span> Leadership</div>
-      <div class="skill-pills">
-        <span class="skill-pill">Cross-Functional Teams</span><span class="skill-pill">Stakeholder Mgmt</span><span class="skill-pill">Vendor Coordination</span><span class="skill-pill">Client Communication</span><span class="skill-pill">Conflict Resolution</span><span class="skill-pill">Progress Reporting</span>
+
+      <section class="about-method reveal" aria-labelledby="method-title">
+        <div><span>A-07.1</span><h3 id="method-title">How I approach the work</h3></div>
+        <ol>
+          <li><span>01</span><strong>Requirements first</strong><p>Study the jurisdiction, code path, and submittal checklist before building the package.</p></li>
+          <li><span>02</span><strong>Utilities early</strong><p>Resolve service capacity and coordination paths before they threaten cost or schedule.</p></li>
+          <li><span>03</span><strong>Documentation as control</strong><p>Keep bids, RFIs, submittals, field issues, and decisions visible and traceable.</p></li>
+          <li><span>04</span><strong>Field-ready decisions</strong><p>Test every plan against constructability, sequencing, procurement, and site conditions.</p></li>
+        </ol>
+      </section>
+
+      <div class="about-band" aria-hidden="true"><span>PLANS</span><b>+</b><span>PERMITS</span><b>+</b><span>POWER</span><b>+</b><span>PROJECT CONTROLS</span><b>+</b><span>FIELD DELIVERY</span></div>
+    </section>
+
+    <section class="finale section-dark" id="contact" aria-labelledby="contact-title">
+      <div class="section-mark"><span>A-08</span><p>Contact sheet</p></div>
+      <p class="finale-kicker">Pre-construction · Project engineering · Commercial delivery</p>
+      <h2 id="contact-title">Let’s build<br><em>what’s next.</em></h2>
+      <div class="finale-links">
+        <a href="mailto:aumdabhi22@gmail.com">aumdabhi22@gmail.com <span aria-hidden="true">↗</span></a>
+        <a href="tel:+16022149785">(602)&nbsp;214&#8209;9785 <span aria-hidden="true">↗</span></a>
+        <a href="https://www.linkedin.com/in/aum-dabhi-373ab8321" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
       </div>
+      <p class="finale-meta">Aum Dabhi / Phoenix, Arizona / 2026</p>
+      <span class="finale-monogram" aria-hidden="true">AD</span>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><span class="brand-mark">AD</span><strong>Aum Dabhi</strong><p>Pre-construction · Infrastructure · Delivery</p></div>
+    <div><h2>Explore</h2><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#journey">Journey</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+    <div><h2>Professional</h2><a href="mailto:aumdabhi22@gmail.com">Email</a><a href="tel:+16022149785">Phone</a><a href="https://www.linkedin.com/in/aum-dabhi-373ab8321" target="_blank" rel="noreferrer">LinkedIn</a></div>
+    <div class="footer-bottom"><span>© 2026 Aum Dabhi</span><span>Phoenix, Arizona</span><button type="button" id="back-to-top">Back to top ↑</button></div>
+  </footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-panel">
+      <div class="search-panel-header"><h2 id="search-title">Explore the portfolio</h2><button type="button" id="search-close" aria-label="Close search">Esc ×</button></div>
+      <label><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Search projects, skills, experience…" autocomplete="off"></label>
+      <p class="search-hint">Type to search, then choose a result.</p>
+      <div class="search-results" id="search-results"></div>
+      <div class="search-empty" id="search-empty" hidden>No matching section found. Try “pipeline”, “Power BI”, or “certifications”.</div>
     </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<div id="projects">
-<section>
-  <div class="section-label">My Work</div>
-  <h2 class="section-title">Projects I'm <span>Proud Of</span></h2>
-  <div class="section-divider"></div>
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="analytics">Analytics</button>
-    <button class="filter-btn" data-filter="highway">Highway</button>
-    <button class="filter-btn" data-filter="pipeline">Pipeline</button>
-    <button class="filter-btn" data-filter="sustainable">Sustainable</button>
-  </div>
-  <div class="proj-grid">
-
-    <div class="proj-card" data-cat="highway">
-      <div class="proj-icon">🛣️</div>
-      <div class="proj-meta">Highway Construction · Academic</div>
-      <div class="proj-name">Highway Storm Sewer Drainage Design & Construction</div>
-      <div class="proj-desc">Designed a complete highway stormwater drainage system — retention ponds, detention ponds, culverts, catch basins, and storm sewer networks. Performed hydrologic & hydraulic analysis for flood mitigation, with full cost estimates and construction sequencing.</div>
-      <div class="proj-tags"><span class="tag">Highway Construction</span><span class="tag">Drainage Design</span><span class="tag">Cost Estimating</span><span class="tag">Hydraulics</span></div>
-    </div>
-
-    <div class="proj-card" data-cat="analytics">
-      <div class="proj-icon">📊</div>
-      <div class="proj-meta">Analytics · CON 593</div>
-      <div class="proj-name">RFI & Submittal Turnaround Analysis Dashboard</div>
-      <div class="proj-desc">Built an interactive Power BI dashboard analyzing 100+ construction RFIs and submittals to identify workflow bottlenecks. KPIs included cycle time, SLA compliance, and rework rates. Identified owner approvals and incomplete submissions as primary delay drivers.</div>
-      <div class="proj-tags"><span class="tag">Power BI</span><span class="tag">KPI Development</span><span class="tag">Document Control</span><span class="tag">RFI Management</span></div>
-    </div>
-
-    <div class="proj-card" data-cat="pipeline">
-      <div class="proj-icon">🌊</div>
-      <div class="proj-meta">Pipeline Engineering · Trenchless Construction</div>
-      <div class="proj-name">Subsea Hydrogen Pipeline Beneath Ningaloo Reef (HDD & Microtunneling)</div>
-      <div class="proj-desc">Designed a 2.4 km trenchless hydrogen pipeline crossing beneath a UNESCO World Heritage coral reef using HDD and microtunneling. Included geotechnical analysis, bore path optimization, hydrogen-compatible materials selection, and environmental impact mitigation.</div>
-      <div class="proj-tags"><span class="tag">Trenchless Construction</span><span class="tag">HDD Design</span><span class="tag">Pipeline Engineering</span><span class="tag">Risk Management</span><span class="tag">Geotechnical</span></div>
-    </div>
-
-    <div class="proj-card" data-cat="sustainable">
-      <div class="proj-icon">🌿</div>
-      <div class="proj-meta">Sustainable Design · Building Systems</div>
-      <div class="proj-name">Sustainable Building Thermal Comfort Optimization</div>
-      <div class="proj-desc">Evaluated thermal comfort factors and proposed sustainable solutions using smart thermostats, automated blinds, and natural ventilation. Developed strategies to improve occupant well-being while reducing HVAC energy consumption through green building principles.</div>
-      <div class="proj-tags"><span class="tag">Sustainable Design</span><span class="tag">Thermal Analysis</span><span class="tag">Energy Efficiency</span><span class="tag">LEED Principles</span></div>
-    </div>
-
-  </div>
-</section>
-</div>
-
-<!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="section-label">Credentials</div>
-  <h2 class="section-title">Certifications &amp; <span>Recognition</span></h2>
-  <div class="section-divider"></div>
-  <div class="cert-grid">
-    <div class="cert-card"><div class="cert-icon">🦺</div><div><div class="cert-name">OSHA 30-Hour</div><div class="cert-body">Construction Safety · OSHA</div></div></div>
-    <div class="cert-card"><div class="cert-icon">🌿</div><div><div class="cert-name">LEED Green Associate</div><div class="cert-body">Sustainable Building · USGBC</div></div></div>
-    <div class="cert-card"><div class="cert-icon">📐</div><div><div class="cert-name">Bluebeam Certified Professional</div><div class="cert-body">Construction Documentation · Bluebeam</div></div></div>
-    <div class="cert-card"><div class="cert-icon">📋</div><div><div class="cert-name">Construction Manager in Training</div><div class="cert-body">CMIT Designation · CMAA</div></div></div>
-    <div class="cert-card"><div class="cert-icon">🏗️</div><div><div class="cert-name">Procore Certified</div><div class="cert-body">Project Management · Procore (Student)</div></div></div>
-    <div class="cert-card"><div class="cert-icon">📅</div><div><div class="cert-name">Primavera P6</div><div class="cert-body">Project Scheduling · Oracle</div></div></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<div id="contact">
-<section>
-  <div class="section-label">Get In Touch</div>
-  <h2 class="section-title" style="text-align:center">Let's Work <span>Together</span></h2>
-  <div class="section-divider" style="margin:0 auto 2rem"></div>
-  <div class="contact-inner">
-    <p style="color:var(--muted);font-size:.95rem">I'm actively seeking full-time roles in Project Engineering, Construction Management, and Site Operations. Let's explore how I can contribute to your team from day one.</p>
-    <div class="contact-links">
-      <a href="mailto:adabhi@asu.edu" class="contact-link">
-        <span class="icon">✉️</span>
-        <span class="lbl">Email</span>
-        <span class="val">adabhi@asu.edu</span>
-      </a>
-      <a href="https://www.linkedin.com/in/aum-dabhi-373ab8321" target="_blank" class="contact-link">
-        <span class="icon">💼</span>
-        <span class="lbl">LinkedIn</span>
-        <span class="val">aum-dabhi</span>
-      </a>
-    </div>
-    <div class="cta-banner">
-      <h3>Ready to build something <em>great</em>?</h3>
-      <p>MS in Construction Management · Graduated May 2026 · Tempe, AZ · Open to Relocate Nationwide<br>Targeting Project Engineer · Construction PM · Site Manager</p>
-      <a href="mailto:adabhi@asu.edu" class="btn btn-primary">✉️ Say Hello</a>
-    </div>
-  </div>
-</section>
-</div>
-
-<footer>© 2026 Aum Dabhi · Portfolio built with HTML, CSS & JS · Tempe, Arizona</footer>
-
-<button id="scrolltop" title="Back to top">↑</button>
-
-<script>
-// Hamburger
-document.getElementById('hamburger').addEventListener('click',function(){
-  document.getElementById('navLinks').classList.toggle('open');
-});
-document.querySelectorAll('.nav-links a').forEach(function(a){
-  a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open')});
-});
-
-// Scroll top button
-var st=document.getElementById('scrolltop');
-window.addEventListener('scroll',function(){
-  st.classList.toggle('show',window.scrollY>400);
-});
-st.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
-
-// Project filter
-document.querySelectorAll('.filter-btn').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
-    this.classList.add('active');
-    var f=this.dataset.filter;
-    document.querySelectorAll('.proj-card').forEach(function(card){
-      card.style.display=(f==='all'||card.dataset.cat===f)?'flex':'none';
-    });
-  });
-});
-
-// Scroll reveal
-var observer=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}
-  });
-},{threshold:0.08});
-document.querySelectorAll('.exp-card,.proj-card,.cert-card,.skill-group,.tl-item').forEach(function(el){
-  el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease, transform .5s ease';
-  observer.observe(el);
-});
-</script>
+  </dialog>
 </body>
 </html>
